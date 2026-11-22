@@ -1,7 +1,7 @@
 let dspNode = null;
 let lastBellTime = -1000;
 
-const dspName = "bells";
+const dspName = "bells_local";
 const instance = new FaustWasm2ScriptProcessor(dspName);
 
 instance.createDSP(audioContext, 1024)
@@ -21,7 +21,7 @@ function rotationChange(rotx, roty, rotz) {
 }
 
 function mousePressed() {
-    // Allows testing with a mouse on the laptop.
+    // Test the bell by clicking on the laptop.
     playAudio();
 }
 
@@ -45,7 +45,7 @@ function playAudio() {
         return;
     }
 
-    // Avoid triggering too many overlapping strikes.
+    // Prevent too many overlapping bell strikes.
     const now = performance.now();
 
     if (now - lastBellTime < 350) {
